@@ -1,0 +1,25 @@
+Theme:
+# McNugget Clicker
+
+Recsource:
+# Chicken McNuggets
+
+Generators:
+#Cursor
+#Ronal McDonald
+#McSlaughterHouse
+#McChicken
+#McFarmer
+#McDonalds
+#McBank
+#McWizard
+#McTemple
+
+Story:
+*McNuggets are very High in protein
+*McNuggets for Life!!!!
+* Did you know chickens like being eaten by us???
+*McNuggets are the most well known cusine aroound the world
+*McNuggets go great with BBQ sauce
+*Vote McChicken for President
+*Donald Trump eats chicken nuggets every day since birht(true fact)

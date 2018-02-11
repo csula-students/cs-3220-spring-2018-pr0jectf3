@@ -1,0 +1,68 @@
+.button-buy button{
+	background-color: #db1020;
+	border: 2px solid yellow;
+	color: white;
+	cursor: pointer;
+	width: 100%;
+	height: 100px;
+	display: block;
+	
+}
+
+.button-buy button:hover{
+	background-color: yellow;
+	color: black;
+	
+}
+
+.story{
+	background-color: #db1020;
+	color:yellow;
+	overflow: scroll;
+	margin: 20px
+
+}
+
+.title{
+	border: solid #db1020;
+	margin: 20px;
+	margin: auto;
+	color: #db1020;
+	font-size: 20pt;
+		
+	
+	
+}
+
+.hi{
+	display:inline-block;
+	flex-flow: row;
+}
+
+.jj{
+	display: flex;
+	
+}
+
+.count{
+	margin: 50px;
+	font-size: 35pt;
+	color: #db1020;
+	border: solid #db1020
+}
+
+.clicker{
+	background-color: #db1020;
+	border: 2px solid yellow;
+	color: white;
+	cursor: pointer;
+	width: 100%;
+	height: 100px;
+	display: block;
+	font-size: 50pt;
+	margin: 100px
+}
+
+.body{;
+	background-color: black
+}

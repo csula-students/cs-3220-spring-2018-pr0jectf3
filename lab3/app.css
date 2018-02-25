@@ -1,0 +1,85 @@
+.button-buy button{
+	background-color: firebrick;
+	border: 2px solid wheat;
+	color: white;
+	cursor: pointer;
+	width: 100%;
+	height: 100px;
+	display: block;
+	
+}
+
+.button-buy button:hover{
+	background-color: wheat;
+	transform: translateX(20px);
+	color: black;
+	
+}
+
+.button-buy button:active{
+	transform: translateY(10px);
+	background-color: wheat;
+}
+
+.story{
+	background-color: transparent;
+	color: wheat;
+	overflow-y: scroll;
+	margin-right: 500px;
+	margin-left: 525px;
+	margin-bottom: 50px;
+	margin-top: 10px;
+
+}
+
+.title{
+	border: none;
+	margin: 20px;
+	margin-left: 450px;
+	color: wheat;
+	font-family: fantasy;
+	font-size: 30pt;
+		
+	
+	
+}
+
+.hi{
+	display:inline-block;
+	flex-flow: row;
+}
+
+.jj{
+	display: flex;
+	
+}
+
+.count{
+	margin-left: 450px;
+	font-size: 75pt;
+	font-family: fantasy;
+	color: wheat;
+	border: 0;
+	backface-visibility: hidden;
+}
+
+.clicker{
+	background-image: url(chicken_nugget.png);
+	background-size: 500px 500px;
+	background-color: transparent;
+	height: 500px;  
+    width: 500px;
+	display: block;
+	margin-left: 250px;
+	background-repeat: no-repeat;
+	border: 0;
+}
+
+.clicker:active{
+	transform: translateY(5px);
+	
+}
+
+.body{;
+	background-image: url(blue_stripe_background.jpg);
+}

@@ -1,3 +1,12 @@
+
+window.incrementalGame = {
+	state: {
+		counter: 0
+	}
+};
+
+
+
 // PubSub is single object for publish data to multiple subscribers
 class PubSub {
     constructor () {
@@ -19,26 +28,22 @@ class PubSub {
 }
 //------------------------------------------------------------------------------
 const pubSub = new PubSub();
-var nugget = 0;
+const nugget = document.querySelector('#nugget');
 const button = document.querySelector('#clicker');
 
+button.addEventListener('click', () => {
+	
+	pubSub.publish(window.incrementalGame.state.counter);
+});
+
 pubSub.subscribe(data => {
-    console.log(nugget);
+    window.incrementalGame.state.counter++;
+	nugget.innerHTML = window.incrementalGame.state.counter;
 });
 
-pubSub.publish(nugget);
 
-//button.addEventListener('click', () =>{
-//	pubSub.publish(window.state.nugget);
-//	nugget = nugget + 1;
-//	document.getElementById("nugget").innerHTML = nugget;
-//	window.alert("hello");
-//});
-button.addEventListener('click', function(){
-	nugget = nugget + 1;
-	document.getElementById("nugget").innerHTML = nugget;
-	pubSub.publish(window.state.nugget);
-});
+
+
 
 
 

@@ -16,6 +16,10 @@
 	
 }
 
+.button-buy button:hover .tooltiptext {
+    visibility: visible;
+}
+
 .button-buy button:active{
 	transform: translateY(10px);
 	background-color: wheat;
@@ -83,3 +87,29 @@
 .body{;
 	background-image: url(blue_stripe_background.jpg);
 }
+
+.top-row{
+	display: flex;
+	justify-content: space-between;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.cost{
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 5px;
+}
+

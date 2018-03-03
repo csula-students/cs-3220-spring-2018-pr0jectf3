@@ -28,7 +28,9 @@ export default class Generator {
 	 */
 	getCost () {
 		// TODO: implement the function according to doc above
-		return 0;
+		let recentCost = this.baseCost * Math.pow(1 + this.rate * 0.005, this.quantity);
+		let cost = Number(recentCost.toFixed(2));
+		return cost;
 	}
 
 	/**
@@ -38,6 +40,6 @@ export default class Generator {
 	 */
 	generate () {
 		// TODO: implement based on doc above
-		return 0;
+		return this.rate * this.quantity;
 	}
 }

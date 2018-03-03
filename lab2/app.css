@@ -1,6 +1,6 @@
 .button-buy button{
-	background-color: #db1020;
-	border: 2px solid yellow;
+	background-color: firebrick;
+	border: 2px solid wheat;
 	color: white;
 	cursor: pointer;
 	width: 100%;
@@ -10,25 +10,35 @@
 }
 
 .button-buy button:hover{
-	background-color: yellow;
+	background-color: wheat;
+	transform: translateX(20px);
 	color: black;
 	
 }
 
+.button-buy button:active{
+	transform: translateY(10px);
+	background-color: wheat;
+}
+
 .story{
-	background-color: #db1020;
-	color:yellow;
-	overflow: scroll;
-	margin: 20px
+	background-color: transparent;
+	color: wheat;
+	overflow-y: scroll;
+	margin-right: 500px;
+	margin-left: 525px;
+	margin-bottom: 50px;
+	margin-top: 10px;
 
 }
 
 .title{
-	border: solid #db1020;
+	border: none;
 	margin: 20px;
-	margin: auto;
-	color: #db1020;
-	font-size: 20pt;
+	margin-left: 450px;
+	color: wheat;
+	font-family: fantasy;
+	font-size: 30pt;
 		
 	
 	
@@ -45,24 +55,31 @@
 }
 
 .count{
-	margin: 50px;
-	font-size: 35pt;
-	color: #db1020;
-	border: solid #db1020
+	margin-left: 450px;
+	font-size: 75pt;
+	font-family: fantasy;
+	color: wheat;
+	border: 0;
+	backface-visibility: hidden;
 }
 
 .clicker{
-	background-color: #db1020;
-	border: 2px solid yellow;
-	color: white;
-	cursor: pointer;
-	width: 100%;
-	height: 100px;
+	background-image: url(chicken_nugget.png);
+	background-size: 500px 500px;
+	background-color: transparent;
+	height: 500px;  
+    width: 500px;
 	display: block;
-	font-size: 50pt;
-	margin: 100px
+	margin-left: 250px;
+	background-repeat: no-repeat;
+	border: 0;
+}
+
+.clicker:active{
+	transform: translateY(5px);
+	
 }
 
 .body{;
-	background-color: black
+	background-image: url(blue_stripe_background.jpg);
 }

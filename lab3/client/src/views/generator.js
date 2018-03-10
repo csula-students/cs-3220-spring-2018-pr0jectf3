@@ -5,94 +5,62 @@ export default function (store) {
 	return class GeneratorComponent extends window.HTMLElement {
 		constructor () {
 			super();
+			this.onStateChange = this.handleStateChange.bind(this);
 			this.store = store;
 
-			switch(this.dataset.id){
-				case 0:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					}
-					break;
-				case 1:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					}
-					break;
-				case 2:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					}
-					break;
-				case 3:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					}
-					break;
-				case 4:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					}
-					break;
-				case 5:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					}
-					break;
-				case 6:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					}
-					break;
-			}
-			// TODO: render generator initial view
 			
-			// TODO: subscribe to store on change event
-			
-				
-			// TODO: add click event
-
 		}
+		handleStateChange(newState){
+			const generator = new Generator(Object.assign({}, newState.generators[this.dataset.id]));
+			this.innerHTML = `<div class = 'button-buy'>
+								<button class = 'gen'>
+								<div class = 'top-row'>
+								<h1 class = 'generator-name'>${generator.name}</h1>
+								<h2 class = 'amt'>${generator.quantity}</h2>
+								</div>
+								<div class = 'cost'>price: ${Math.floor(generator.getCost())}</div>
+								<span class="tooltiptext">
+								<div class = 'description'>${generator.description}</div>
+								<div class = 'rate'>rate: ${generator.rate} per min</div>
+								</span>
+								</div>`;
+			this.render();
+		}
+		
+		connectedCallback() {
+
+			const generator = new Generator(Object.assign({}, store.state.generators[this.dataset.id]));
+
+
+
+			this.innerHTML = `<div class = 'button-buy'>
+								<button class = 'gen'>
+								<div class = 'top-row'>
+								<h1 class = 'generator-name'>${generator.name}</h1>
+								<h2 class = 'amt'>${generator.quantity}</h2>
+								</div>
+								<div class = 'cost'>price: ${Math.floor(generator.getCost())}</div>
+								<span class="tooltiptext">
+								<div class = 'description'>${generator.description}</div>
+								<div class = 'rate'>rate: ${generator.rate} per min</div>
+								</span>
+								</div>`;
+
+
+			this.addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: {
+						name: generator.name
+					}
+				});
+			});							 this.store.subscribe(this.onStateChange);
+		}
+		disconnectedCallback () {
+			this.store.unsubscribe(this.onStateChange);
+		}
+
+
 	};
+
 }

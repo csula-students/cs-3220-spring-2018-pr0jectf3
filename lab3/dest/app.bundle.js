@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,35 +70,53 @@
 "use strict";
 
 
-__webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	growthRatio: 0.05,
+	actions: {
+		EXAMPLE: 'EXAMPLE_MUTATION',
+		BUY_GENERATOR: 'BUY_GENERATOR'
+	}
+};
 
-var _game = __webpack_require__(4);
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var _store = __webpack_require__(5);
+"use strict";
+
+
+__webpack_require__(2);
+
+var _game = __webpack_require__(5);
+
+var _store = __webpack_require__(6);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(6);
+var _reducer = __webpack_require__(7);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(7);
+var _button = __webpack_require__(8);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(8);
+var _counter = __webpack_require__(9);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(9);
+var _example = __webpack_require__(10);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(10);
+var _generator = __webpack_require__(11);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(11);
+var _storyBook = __webpack_require__(13);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -171,7 +189,13 @@ function main() {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [{
+			name: 'Grandma',
+			rate: 5,
+			cost: 10
+		}, {
+			name: 'santa'
+		}],
 		story: []
 	};
 
@@ -198,7 +222,7 @@ function main() {
 }
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -399,10 +423,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -429,7 +453,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -619,7 +643,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -653,7 +677,7 @@ function increment(state, modifier = 1) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -724,7 +748,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -736,7 +760,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = reducer;
 function reducer(state, action) {
 	switch (action.type) {
-		case 'EXAMPLE_MUTATION':
+		case 'BUY_GENERATOR':
 			state.example = action.payload;
 			return state;
 		default:
@@ -745,7 +769,7 @@ function reducer(state, action) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -770,7 +794,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -788,11 +812,13 @@ exports.default = function (store) {
 			// TODO: render counter inner HTML based on the store state
 
 			this.onStateChange = this.handleStateChange.bind(this);
+			this.textContent = this.store.state.counter;
 		}
 
 		handleStateChange(newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
+			this.textContent = newState;
 		}
 
 		connectedCallback() {
@@ -806,7 +832,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -854,7 +880,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -870,17 +896,169 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 
+			switch (this.dataset.id) {
+				case 0:
+					this.meta = {
+						type: 'generator',
+						name: 'McCursor',
+						description: 'A cursor that Auto-Makes Nuggets.',
+						rate: 5,
+						quantity: 0,
+						baseCost: 5,
+						unlockValue: 5
+					};
+					break;
+				case 1:
+					this.meta = {
+						type: 'generator',
+						name: 'McCursor',
+						description: 'A cursor that Auto-Makes Nuggets.',
+						rate: 5,
+						quantity: 0,
+						baseCost: 5,
+						unlockValue: 5
+					};
+					break;
+				case 2:
+					this.meta = {
+						type: 'generator',
+						name: 'McCursor',
+						description: 'A cursor that Auto-Makes Nuggets.',
+						rate: 5,
+						quantity: 0,
+						baseCost: 5,
+						unlockValue: 5
+					};
+					break;
+				case 3:
+					this.meta = {
+						type: 'generator',
+						name: 'McCursor',
+						description: 'A cursor that Auto-Makes Nuggets.',
+						rate: 5,
+						quantity: 0,
+						baseCost: 5,
+						unlockValue: 5
+					};
+					break;
+				case 4:
+					this.meta = {
+						type: 'generator',
+						name: 'McCursor',
+						description: 'A cursor that Auto-Makes Nuggets.',
+						rate: 5,
+						quantity: 0,
+						baseCost: 5,
+						unlockValue: 5
+					};
+					break;
+				case 5:
+					this.meta = {
+						type: 'generator',
+						name: 'McCursor',
+						description: 'A cursor that Auto-Makes Nuggets.',
+						rate: 5,
+						quantity: 0,
+						baseCost: 5,
+						unlockValue: 5
+					};
+					break;
+				case 6:
+					this.meta = {
+						type: 'generator',
+						name: 'McCursor',
+						description: 'A cursor that Auto-Makes Nuggets.',
+						rate: 5,
+						quantity: 0,
+						baseCost: 5,
+						unlockValue: 5
+					};
+					break;
+			}
 			// TODO: render generator initial view
 
 			// TODO: subscribe to store on change event
+
 
 			// TODO: add click event
 		}
 	};
 };
 
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _generator = __webpack_require__(12);
+
+var _generator2 = _interopRequireDefault(_generator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /***/ }),
-/* 11 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Generator {
+	/**
+  * Create a new generator based on the meta object passing in
+  * @constructor
+  * @param {object} meta - meta object for constructing generator
+  */
+	constructor(meta) {
+		this.type = meta.type;
+		this.name = meta.name;
+		this.description = meta.description;
+		this.rate = meta.rate;
+		this.quantity = meta.quantity;
+		this.baseCost = meta.baseCost;
+		this.unlockValue = meta.unlockValue;
+	}
+
+	/**
+  * getCost computes cost exponentially based on quantity (as formula below)
+  * xt = x0(1 + r)^t
+  * which 
+  * xt is the value of x with t quantity
+  * x0 is base value
+  * r is growth ratio (see constants.growthRatio)
+  * t is the quantity
+  * @return {number} the cost of buying another generator
+  */
+	getCost() {
+		// TODO: implement the function according to doc above
+		let recentCost = this.baseCost * Math.pow(1 + this.rate * 0.005, this.quantity);
+		let cost = Number(recentCost.toFixed(2));
+		return cost;
+	}
+
+	/**
+  * generate computes how much this type of generator generates -
+  * rate * quantity
+  * @return {number} how much this generator generates
+  */
+	generate() {
+		// TODO: implement based on doc above
+		return this.rate * this.quantity;
+	}
+}
+exports.default = Generator;
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

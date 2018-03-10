@@ -10,9 +10,9 @@
 }
 
 .button-buy button:hover{
-	background-color: wheat;
+	background-color: firebrick;
 	transform: translateX(20px);
-	color: black;
+	color: ghostwhite;
 	
 }
 
@@ -91,19 +91,21 @@
 .top-row{
 	display: flex;
 	justify-content: space-between;
+	font-family: cursive;
 }
 
 .tooltiptext {
     visibility: hidden;
-    width: 120px;
-    background-color: black;
+    width: 320px;
+	height: 85px;
+    background-color: darkgray;
     color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
 
     /* Position the tooltip */
-    position: absolute;
+    position:absolute;
     z-index: 1;
 }
 
@@ -111,5 +113,6 @@
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 5px;
+	color: yellow;
 }
 

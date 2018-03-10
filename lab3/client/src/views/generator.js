@@ -12,7 +12,8 @@ export default function (store) {
 		}
 		handleStateChange(newState){
 			const generator = new Generator(Object.assign({}, newState.generators[this.dataset.id]));
-			this.innerHTML = `<div class = 'button-buy'>
+			this.innerHTML = `<p class = 'jj'>
+								<div class = 'button-buy'>
 								<button class = 'gen'>
 								<div class = 'top-row'>
 								<h1 class = 'generator-name'>${generator.name}</h1>
@@ -23,8 +24,9 @@ export default function (store) {
 								<div class = 'description'>${generator.description}</div>
 								<div class = 'rate'>rate: ${generator.rate} per min</div>
 								</span>
-								</div>`;
-			this.render();
+								</div>
+								</p><br/>`;
+			
 		}
 		
 		connectedCallback() {
@@ -33,7 +35,8 @@ export default function (store) {
 
 
 
-			this.innerHTML = `<div class = 'button-buy'>
+			this.innerHTML =  `<p>
+								<div class = 'button-buy'>
 								<button class = 'gen'>
 								<div class = 'top-row'>
 								<h1 class = 'generator-name'>${generator.name}</h1>
@@ -44,8 +47,8 @@ export default function (store) {
 								<div class = 'description'>${generator.description}</div>
 								<div class = 'rate'>rate: ${generator.rate} per min</div>
 								</span>
-								</div>`;
-
+								</div>
+								</p><br/>`;
 
 			this.addEventListener('click', () => {
 				this.store.dispatch({

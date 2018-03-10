@@ -12,11 +12,11 @@ export default function (store) {
 		handleStateChange (newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
-			this.innerHTML = 'Nuggets: ${newState.counter}';
+			this.innerHTML = `<h2 class ="count" id="nugget">${newState.counter}</h2>`;
 		}
 
 		connectedCallback () {
-			this.innerHTML = 'Nuggets: 0';
+			this.innerHTML = '<h2 class ="count" id="nugget">0</h2>';
 			this.store.subscribe(this.onStateChange);
 		}
 

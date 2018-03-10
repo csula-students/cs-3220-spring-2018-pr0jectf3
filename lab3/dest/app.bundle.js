@@ -60,11 +60,73 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _constants = __webpack_require__(1);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Generator {
+	/**
+  * Create a new generator based on the meta object passing in
+  * @constructor
+  * @param {object} meta - meta object for constructing generator
+  */
+	constructor(meta) {
+		this.type = meta.type;
+		this.name = meta.name;
+		this.description = meta.description;
+		this.rate = meta.rate;
+		this.quantity = meta.quantity;
+		this.baseCost = meta.baseCost;
+		this.unlockValue = meta.unlockValue;
+	}
+
+	/**
+  * getCost computes cost exponentially based on quantity (as formula below)
+  * xt = x0(1 + r)^t
+  * which 
+  * xt is the value of x with t quantity
+  * x0 is base value
+  * r is growth ratio (see constants.growthRatio)
+  * t is the quantity
+  * @return {number} the cost of buying another generator
+  */
+	getCost() {
+		// TODO: implement the function according to doc above
+		let recentCost = this.baseCost * Math.pow(1 + this.rate * 0.005, this.quantity);
+		let cost = Number(recentCost.toFixed(2));
+		return cost;
+	}
+
+	/**
+  * generate computes how much this type of generator generates -
+  * rate * quantity
+  * @return {number} how much this generator generates
+  */
+	generate() {
+		// TODO: implement based on doc above
+		return this.rate * this.quantity;
+	}
+}
+exports.default = Generator;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82,37 +144,37 @@ exports.default = {
 };
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(3);
 
-var _game = __webpack_require__(5);
+var _game = __webpack_require__(6);
 
-var _store = __webpack_require__(6);
+var _store = __webpack_require__(7);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(7);
+var _reducer = __webpack_require__(8);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(8);
+var _button = __webpack_require__(9);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(9);
+var _counter = __webpack_require__(10);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(10);
+var _example = __webpack_require__(11);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(11);
+var _generator = __webpack_require__(12);
 
 var _generator2 = _interopRequireDefault(_generator);
 
@@ -190,22 +252,65 @@ function main() {
 		example: 'Hello custom element',
 		counter: 0,
 		generators: [{
-			name: 'Grandma',
-			rate: 5,
-			cost: 10
+			name: 'McCursor',
+			description: 'automatically generates nuggets per second',
+			rate: 1,
+			baseCost: 10,
+			quantity: 0,
+			unlockValue: 10
+
 		}, {
-			name: 'santa'
+			name: 'McChicken',
+			description: 'The chicken lays golden nuggets',
+			rate: 25,
+			baseCost: 20,
+			quantity: 0,
+			unlockValue: 20
+		}, {
+			name: 'McFarmer',
+			description: 'Farmer breeds McChickens',
+			rate: 100,
+			baseCost: 125,
+			quantity: 0,
+			unlockValue: 125
+		}, {
+			name: 'McSlaughterHouse',
+			description: 'kills McChickens to produce nuggets quickly',
+			rate: 500,
+			baseCost: 500,
+			quantity: 0,
+			unlockValue: 500
+		}, {
+			name: 'McBank',
+			description: 'Safe place to store McNuggets',
+			rate: 1000,
+			baseCost: 1250,
+			quantity: 0,
+			unlockValue: 1250
+		}, {
+			name: 'RonaldMcDonald',
+			description: 'The king of all Chicken McNuggets',
+			rate: 5000,
+			baseCost: 3000,
+			quantity: 0,
+			unlockValue: 3000
+		}, {
+			name: 'McDonalds',
+			description: 'The McNugget Kingdom located by your nearby block',
+			rate: 10000,
+			baseCost: 15000,
+			quantity: 0,
+			unlockValue: 15000
 		}],
 		story: []
 	};
 
 	// initialize store
 	const store = new _store2.default(_reducer2.default, initialState);
-	console.log((0, _example2.default)(store));
+	//console.log(ExampleComponent(store));
 
 	// define web components
 	window.customElements.define('component-example', (0, _example2.default)(store));
-	// no longer used
 	window.customElements.define('game-button', (0, _button2.default)(store));
 	window.customElements.define('game-counter', (0, _counter2.default)(store));
 	// lab 3
@@ -222,7 +327,7 @@ function main() {
 }
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -423,10 +528,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 var g;
@@ -453,7 +558,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -643,7 +748,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -677,7 +782,7 @@ function increment(state, modifier = 1) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -748,7 +853,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -758,18 +863,46 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = reducer;
+
+var _generator = __webpack_require__(0);
+
+var _generator2 = _interopRequireDefault(_generator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function reducer(state, action) {
 	switch (action.type) {
+
 		case 'BUY_GENERATOR':
+			var num = -1;
+			for (var i = 0; i <= state.generators.length - 1; i++) {
+				if (state.generators[i].name == action.payload.name) {
+					num = i;
+				}
+			}
+			const generator = new _generator2.default(Object.assign({}, state.generators[num]));
+			var cost = Math.floor(generator.getCost());
+
+			if (state.counter >= cost) {
+				state.counter = state.counter - cost;
+				state.generators[num].quantity++;
+			}
+
+			return state;
+		case 'BUTTON-CLICK':
+			state.counter++;
+			return state;
+		case 'EXAMPLE_MUTATION':
 			state.example = action.payload;
 			return state;
+
 		default:
 			return state;
 	}
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -785,16 +918,31 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 
-			this.onStateChange = this.handleStateChange.bind(this);
+			//this.onStateChange = this.handleStateChange.bind(this);
 
 			// TODO: add click event to increment counter
 			// hint: use "store.dispatch" method (see example component)
+		}
+
+		//use connected callback and disconnected call back
+
+		connectedCallback() {
+			this.innerHTML = '<div class = "jj"><button class="clicker" id="clicker"></button></div>';
+			this.addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUTTON-CLICK'
+				});
+			});
+		}
+
+		disconnectedCallback() {
+			this.store.unsubscribe(this.onStateChange);
 		}
 	};
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -818,10 +966,11 @@ exports.default = function (store) {
 		handleStateChange(newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
-			this.textContent = newState;
+			this.innerHTML = `<h2 class ="count" id="nugget">${newState.counter}</h2>`;
 		}
 
 		connectedCallback() {
+			this.innerHTML = '<h2 class ="count" id="nugget">0</h2>';
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -832,7 +981,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -880,7 +1029,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -894,168 +1043,71 @@ exports.default = function (store) {
 	return class GeneratorComponent extends window.HTMLElement {
 		constructor() {
 			super();
+			this.onStateChange = this.handleStateChange.bind(this);
 			this.store = store;
-
-			switch (this.dataset.id) {
-				case 0:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					};
-					break;
-				case 1:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					};
-					break;
-				case 2:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					};
-					break;
-				case 3:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					};
-					break;
-				case 4:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					};
-					break;
-				case 5:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					};
-					break;
-				case 6:
-					this.meta = {
-						type: 'generator',
-						name: 'McCursor',
-						description: 'A cursor that Auto-Makes Nuggets.',
-						rate: 5,
-						quantity: 0,
-						baseCost: 5,
-						unlockValue: 5
-					};
-					break;
-			}
-			// TODO: render generator initial view
-
-			// TODO: subscribe to store on change event
-
-
-			// TODO: add click event
 		}
+		handleStateChange(newState) {
+			const generator = new _generator2.default(Object.assign({}, newState.generators[this.dataset.id]));
+			this.innerHTML = `<p class = 'jj'>
+								<div class = 'button-buy'>
+								<button class = 'gen'>
+								<div class = 'top-row'>
+								<h1 class = 'generator-name'>${generator.name}</h1>
+								<h2 class = 'amt'>${generator.quantity}</h2>
+								</div>
+								<div class = 'cost'>price: ${Math.floor(generator.getCost())}</div>
+								<span class="tooltiptext">
+								<div class = 'description'>${generator.description}</div>
+								<div class = 'rate'>rate: ${generator.rate} per min</div>
+								</span>
+								</div>
+								</p><br/>`;
+		}
+
+		connectedCallback() {
+
+			const generator = new _generator2.default(Object.assign({}, store.state.generators[this.dataset.id]));
+
+			this.innerHTML = `<p>
+								<div class = 'button-buy'>
+								<button class = 'gen'>
+								<div class = 'top-row'>
+								<h1 class = 'generator-name'>${generator.name}</h1>
+								<h2 class = 'amt'>${generator.quantity}</h2>
+								</div>
+								<div class = 'cost'>price: ${Math.floor(generator.getCost())}</div>
+								<span class="tooltiptext">
+								<div class = 'description'>${generator.description}</div>
+								<div class = 'rate'>rate: ${generator.rate} per min</div>
+								</span>
+								</div>
+								</p><br/>`;
+
+			this.addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: {
+						name: generator.name
+					}
+				});
+			});this.store.subscribe(this.onStateChange);
+		}
+		disconnectedCallback() {
+			this.store.unsubscribe(this.onStateChange);
+		}
+
 	};
 };
 
-var _constants = __webpack_require__(0);
+var _constants = __webpack_require__(1);
 
 var _constants2 = _interopRequireDefault(_constants);
 
-var _generator = __webpack_require__(12);
+var _generator = __webpack_require__(0);
 
 var _generator2 = _interopRequireDefault(_generator);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _constants = __webpack_require__(0);
-
-var _constants2 = _interopRequireDefault(_constants);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-class Generator {
-	/**
-  * Create a new generator based on the meta object passing in
-  * @constructor
-  * @param {object} meta - meta object for constructing generator
-  */
-	constructor(meta) {
-		this.type = meta.type;
-		this.name = meta.name;
-		this.description = meta.description;
-		this.rate = meta.rate;
-		this.quantity = meta.quantity;
-		this.baseCost = meta.baseCost;
-		this.unlockValue = meta.unlockValue;
-	}
-
-	/**
-  * getCost computes cost exponentially based on quantity (as formula below)
-  * xt = x0(1 + r)^t
-  * which 
-  * xt is the value of x with t quantity
-  * x0 is base value
-  * r is growth ratio (see constants.growthRatio)
-  * t is the quantity
-  * @return {number} the cost of buying another generator
-  */
-	getCost() {
-		// TODO: implement the function according to doc above
-		let recentCost = this.baseCost * Math.pow(1 + this.rate * 0.005, this.quantity);
-		let cost = Number(recentCost.toFixed(2));
-		return cost;
-	}
-
-	/**
-  * generate computes how much this type of generator generates -
-  * rate * quantity
-  * @return {number} how much this generator generates
-  */
-	generate() {
-		// TODO: implement based on doc above
-		return this.rate * this.quantity;
-	}
-}
-exports.default = Generator;
 
 /***/ }),
 /* 13 */

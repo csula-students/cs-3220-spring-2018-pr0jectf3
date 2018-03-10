@@ -8,7 +8,7 @@
 	</head>
 	
 	<body class = "body">
-	<component-example></component-example>
+	
 		
 		<div class = "title">
 			<h1> McNugget Clicker</h1>
@@ -21,17 +21,22 @@
 		</div>
 		<div class ="jj">
 		
-			<game-generator id="0">btn</game-generator>
-			<game-generator id="1"></game-generator>
-			<game-generator id="2"></game-generator>
-			<game-generator id="3"></game-generator>
-			<game-generator id="4"></game-generator>
-			<game-generator id="5"></game-generator>
+			<game-generator data-id="0"></game-generator>
+			<game-generator data-id="1"></game-generator>
+			<game-generator data-id="2"></game-generator>
+			<game-generator data-id="3"></game-generator>
+			<game-generator data-id="4"></game-generator>
+			<game-generator data-id="5"></game-generator>
+			<game-generator data-id="6"></game-generator>
 		
 		<div class = "function">
+		<game-button></game-button>
+		<game-counter></game-counter>
+<!--
 		<h2 class ="count" id="nugget">0</h2>
 		
 		<button class="clicker" id="clicker"></button>
+-->
 		</div>
 		</div>
 		</main>
@@ -40,8 +45,6 @@
 	<script src = "dest/app.bundle.js">
 		
 	</script>
-	<script src = "app.js">
-	
-	</script>
+
 	
 </html>

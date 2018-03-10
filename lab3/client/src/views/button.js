@@ -13,7 +13,7 @@ export default function (store) {
 		//use connected callback and disconnected call back
 		
 		connectedCallback(){
-			this.innerHTML = '<button class="clicker" id="clicker"></button>';
+			this.innerHTML = '<div class = "jj"><button class="clicker" id="clicker"></button></div>';
 			this.addEventListener('click', ()=> {
 				this.store.dispatch({
 					type: 'BUTTON-CLICK'

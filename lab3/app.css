@@ -10,10 +10,14 @@
 }
 
 .button-buy button:hover{
-	background-color: wheat;
+	background-color: firebrick;
 	transform: translateX(20px);
-	color: black;
+	color: ghostwhite;
 	
+}
+
+.button-buy button:hover .tooltiptext {
+    visibility: visible;
 }
 
 .button-buy button:active{
@@ -44,10 +48,6 @@
 	
 }
 
-.hi{
-	display:inline-block;
-	flex-flow: row;
-}
 
 .jj{
 	display: flex;
@@ -83,3 +83,32 @@
 .body{;
 	background-image: url(blue_stripe_background.jpg);
 }
+
+.top-row{
+	display: flex;
+	justify-content: space-between;
+	font-family: cursive;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 320px;
+	height: 85px;
+    background-color: darkgray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position:absolute;
+    z-index: 1;
+}
+
+.cost{
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 5px;
+	color: yellow;
+}
+

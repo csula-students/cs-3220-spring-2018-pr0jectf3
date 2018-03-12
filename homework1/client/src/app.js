@@ -137,30 +137,30 @@ function main () {
 			}],
 		story: [
 			{
-			name: 'Gotta protect them McNuggets!',
-			description: 'Make them, Make them, Make them!!!',
-			triggeredAt: 20,
-			state: 'hidden'
-		},
+				name: 'Gotta protect them McNuggets!',
+				description: 'Make them, Make them, Make them!!!',
+				triggeredAt: 20,
+				state: 'hidden'
+			},
 			{
-			name: 'Hey you are really good at this!',
-			description: 'I LOVE CHICKEN NUGGETSSSS!!!',
-			triggeredAt: 40,
-			state: 'hidden'
-		},
+				name: 'Hey you are really good at this!',
+				description: 'I LOVE CHICKEN NUGGETSSSS!!!',
+				triggeredAt: 40,
+				state: 'hidden'
+			},
 			{
-			name: 'Ronald is eating all the nuggets!',
-			description: 'HURRY, WE ARE RUNNING OUT OF NUGGETS!!!',
-			triggeredAt: 60,
-			state: 'hidden'
-		},
+				name: 'Ronald is eating all the nuggets!',
+				description: 'HURRY, WE ARE RUNNING OUT OF NUGGETS!!!',
+				triggeredAt: 60,
+				state: 'hidden'
+			},
 			{
-			name: 'You are the Nugget GOD!',
-			description: 'YUM YUM YUM YUM!!!',
-			triggeredAt: 100,
-			state: 'hidden'
-		},
-			   ]
+				name: 'You are the Nugget GOD!',
+				description: 'YUM YUM YUM YUM!!!',
+				triggeredAt: 100,
+				state: 'hidden'
+			},
+			  ]
 	};
 
 	// initialize store

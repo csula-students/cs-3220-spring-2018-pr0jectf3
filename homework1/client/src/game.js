@@ -1,4 +1,7 @@
+import Generator from './models/generator';
+
 // default interval as 1 second
+
 const interval = 1000;
 
 /**
@@ -19,7 +22,7 @@ export function loop (store) {
 	// hint: remember to change event through `store.dispatch`
 	store.dispatch({
 		type: 'INCREMENT',
-		payload: increment
+		payload: counter
 	});
 	
 

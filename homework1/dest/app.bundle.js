@@ -780,7 +780,15 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.loop = loop;
+
+var _generator = __webpack_require__(0);
+
+var _generator2 = _interopRequireDefault(_generator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // default interval as 1 second
+
 const interval = 1000;
 
 /**
@@ -795,13 +803,13 @@ function loop(store) {
 	//       count how many value to increment to "resource"
 
 	for (let i = 0; i <= store.state.generators.length - 1; i++) {
-		let generator = new Generator(Object.assign({}, store.state.generators[i]));
+		let generator = new _generator2.default(Object.assign({}, store.state.generators[i]));
 		counter = counter + generator.generate();
 	}
 	// hint: remember to change event through `store.dispatch`
 	store.dispatch({
 		type: 'INCREMENT',
-		payload: increment
+		payload: counter
 	});
 
 	// TODO: triggers stories from story to display state if they are passed

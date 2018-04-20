@@ -34,7 +34,7 @@ public class AdminEventsServlet extends HttpServlet {
         System.out.println(entries);
         out.println("<h1>Hello events servlet!</h1>");
         ArrayList<Event> list = (ArrayList<Event>) getServletContext().getAttribute("event-entries");
-        String html = "<h1>Incremental Game<h1>";
+        String html = "<h1>Events<h1>";
         html +=  "<link rel='stylesheet' type='text/css' href='" + request.getContextPath() + "/app.css' />";
         html += "<p>";
         html += "<h4>Event Name:</h4>";

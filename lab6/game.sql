@@ -70,7 +70,7 @@ update generators set unlock_at = 10 , rate = 1 where name = "Grandma";
 
 select * from generators;
 
-SELECT a.base_cost, a.description, a.name, b.quantity, a.rate, a.unlock_at FROM Generators a JOIN Quantities b ON a.id = b.generator_id WHERE b.token = "80516ce4663c3bd0c8385309a2fe226e"; 
+select a.base_cost, a.description, a.name, b.quantity, a.rate, a.unlock_at from Generators a join quantities b on a.id = b.generator_id where b.token = "80516ce4663c3bd0c8385309a2fe226e"; 
 
 
 select * from generators where unlock_at = (select max(unlock_at) from generators);

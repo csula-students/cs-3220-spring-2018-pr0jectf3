@@ -10,6 +10,8 @@ import edu.csula.storage.EventsDAO;
 import edu.csula.storage.Database;
 import edu.csula.models.Event;
 
+import javax.xml.transform.Result;
+
 public class EventsDAOImpl implements EventsDAO {
 	private final Database context;
 
@@ -45,7 +47,20 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public Optional<Event> getById(int id) {
 		// TODO: get specific event by id
-
+		try(Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(EventsDAOImpl.getByIdQuery)){
+			stmt.setInt(1, id);
+			ResultSet set = stmt.executeQuery();
+			while(set.next()){
+				if(set.getInt(1) == id){
+					String name = set.getString(2);
+					String description = set.getString(3);
+					int triggerAt = set.getInt(4);
+					return Optional.of(new Event(id, name, description, triggerAt));
+ 				}
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		return Optional.empty();
 	}
 
@@ -53,7 +68,10 @@ public class EventsDAOImpl implements EventsDAO {
 	public void set(int id, Event event) {
 		// TODO: update specific event by id
 		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(EventsDAOImpl.setQuery)) {
-			stmt.setInt(id, 0);
+			stmt.setString(1, event.getName());
+			stmt.setString(2, event.getDescription());
+			stmt.setInt(3, event.getTriggerAt());
+			stmt.setInt(4, event.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,10 +81,24 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void add(Event event) {
 		// TODO: implement jdbc logic to add a new event
+		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(EventsDAOImpl.addQuery)) {
+			stmt.setString(1, event.getName());
+			stmt.setString(2, event.getDescription());
+			stmt.setInt(3, event.getTriggerAt());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void remove(int id) {
 		// TODO: implement jdbc logic to remove event by id
+		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(EventsDAOImpl.removeQuery)) {
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

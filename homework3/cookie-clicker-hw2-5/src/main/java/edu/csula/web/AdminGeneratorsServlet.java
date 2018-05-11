@@ -41,7 +41,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 //		    dao.remove(g.getId());
 //		    response.sendRedirect("generators");
 //        }
-        request.getRequestDispatcher("/WEB-INF/admin-generator.jsp").forward(request, response);
+        request.getRequestDispatcher("../WEB-INF/admin-generator.jsp").forward(request, response);
 
 	}
 

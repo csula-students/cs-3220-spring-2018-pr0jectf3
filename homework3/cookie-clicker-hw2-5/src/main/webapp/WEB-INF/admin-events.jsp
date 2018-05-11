@@ -5,6 +5,7 @@
   Time: 5:46 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,8 +13,13 @@
 </head>
 <body>
 
-<h1>Hello events servlet!</h1>
-<h1>Incremental Game</h1>
+
+<h1>Events</h1>
+<ul>
+    <li><a href="<c:url value='/admin/auth' />">Game Info</a></li>
+    <li><a href="<c:url value='/admin/events' />">Events</a></li>
+    <li><a href="<c:url value='/admin/generators' />">Generators</a></li>
+</ul>
 <link rel='stylesheet' type='text/css' href='/app.css'/>
 <p>
 <h4>Event Name:</h4>
@@ -26,7 +32,7 @@
     <p>
     <h4>Trigger At:</h4>
     <input name='triggerAt' type="text" id="trigger at">
-    <button>Add/Edit</button>
+    <button>ADD</button>
 </form>
 </p>
 <table>
@@ -42,7 +48,7 @@
             <td>${entry.getName()}</td>
             <td>${entry.getDescription()}</td>
             <td>${entry.getTriggerAt()}</td>
-            <td>eed</td>
+            <td><a href="../admin/events/?id=${entry.getId()}">Edit</a> | <a href="../admin/events/?id=${entry.getId()}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

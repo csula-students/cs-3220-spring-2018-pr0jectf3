@@ -33,7 +33,7 @@ public class AdminEventsServlet extends HttpServlet {
         List<Event> entries = dao.getAll();
 
         ArrayList<Event> list = (ArrayList<Event>) getServletContext().getAttribute("event-entries");
-        request.setAttribute("event-entries", entries);
+        request.setAttribute("entries", entries);
 
         request.getRequestDispatcher("/WEB-INF/admin-events.jsp").forward(request, response);
 

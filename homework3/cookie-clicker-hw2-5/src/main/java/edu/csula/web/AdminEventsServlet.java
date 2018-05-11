@@ -31,54 +31,12 @@ public class AdminEventsServlet extends HttpServlet {
         // TODO: render the events page HTML
         EventsDAO dao = new EventsDAOImpl(getServletContext());
         List<Event> entries = dao.getAll();
-        System.out.println(entries);
-        out.println("<h1>Hello events servlet!</h1>");
+
         ArrayList<Event> list = (ArrayList<Event>) getServletContext().getAttribute("event-entries");
-        String html = "<h1>Events<h1>";
-        html +=  "<link rel='stylesheet' type='text/css' href='" + request.getContextPath() + "/app.css' />";
-        html += "<p>";
-        html += "<h4>Event Name:</h4>";
-        html += "<form method = 'POST' action=\"\">";
-        html += "<input name = 'name' type=\"text\" id=\"event name\">";
-        html += "";
-        html += "</p>";
-        html += "<p>";
-        html += "<h4>Event Description:</h4>";
-        html += "";
-        html += "<input name = 'description' type=\"text\" id=\"event description\">";
-        html += "";
-        html += "</p>";
-        html += "<p>";
-        html += "<h4>Trigger At:</h4>";
-        html += "";
-        html += "<input name = 'triggerAt' type=\"text\" id=\"trigger at\">";
-        html += "<button>Add/Edit</button>";
-        html += "</form>";
-        html += "</p>";
+        request.setAttribute("event-entries", entries);
 
-        html += "";
+        request.getRequestDispatcher("/WEB-INF/admin-events.jsp").forward(request, response);
 
-
-        html += "<table>";
-        html += "<tr>";
-        html += "<td>Name</td>" +
-                "<td>Description</td>" +
-                "<td>Trigger At</td>" +
-                "<td>Edit</td>";
-
-        html += "</tr>";
-
-
-        for(Event entry: entries){
-            html += "<tr>";
-            html += "<td>" + entry.getName() + "</td><td>" + entry.getDescription() + "</td><td>" + entry.getTriggerAt() + "</td><td>edit : delete</td>";
-            html += "</tr>";
-        }
-
-        html += "</table>";
-
-
-        out.println(html);
 
     }
 
@@ -94,7 +52,9 @@ public class AdminEventsServlet extends HttpServlet {
         String triggerAt = request.getParameter("triggerAt");
         Event event = new Event(entries.size(), name, description, Integer.parseInt(triggerAt));
         entry.add(event);
+
         response.sendRedirect("events");
+
 
 
     }

@@ -25,13 +25,15 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		List<Generator> generators = dao.getAll();
 
         request.setAttribute("generators", generators);
-//        String generatorID = request.getParameter("id");
-//		int num = -1;
-//
-//		if(generatorID != null){
-//		    num = getIndex(Integer.parseInt(generatorID));
-//        }
-//        request.setAttribute("index", num);
+
+        String generatorID = request.getParameter("id");
+		int index = -1;
+
+		if(generatorID != null){
+		    index = getIndex(Integer.parseInt(generatorID));
+        }
+        request.setAttribute("index", index);
+
 //		if(request.getParameter("deleteId") != null){
 //		    int num2 = Integer.parseInt(request.getParameter("deleteId"));
 //		    Generator g = null;

@@ -18,62 +18,28 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminGeneratorsServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 		// TODO: render the generators page HTML
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
-		List<Generator> entries = dao.getAll();
+		List<Generator> generators = dao.getAll();
 
-		out.println("<h1>Hello events servlet!</h1>");
-		ArrayList<Generator> list = (ArrayList<Generator>) getServletContext().getAttribute("generator-entries");
-		String html = "<h1>Events<h1>";
-        html +=  "<link rel='stylesheet' type='text/css' href='" + request.getContextPath() + "/app.css' />";
-		html += "<ul>";
-        html += "<a href=\"game-info.html\">Game Information</a></br>";
-        html += "<a href=\"generator-meta.html\">Generators</a></br>";
-        html += "<a href=\"events-meta.html\">Events</a></br>";
-        html += "</ul>";
-        html += "<div class=\"container\">";
-        html += "<h4>Generator Name:</h4>";
-        html += "<form method= 'POST'>";
-        html += "<input name = 'name' type=\"text\" id=\"generator name\">";
-
-        html += "<h4>Generator Rate:</h4>";
-
-        html += "<input name = 'rate' type=\"text\" id=\"generator rate\">";
-
-        html += "<h4>Base Cost:</h4>";
-
-        html += "<input name = 'cost' type=\"text\" id=\"base cost\">";
-
-        html += "<h4>Unlock At:</h4>";
-
-        html += "<input name = 'unlockAt' type=\"text\" id=\"unlock at\">";
-
-        html += "<h4>Description:</h4>";
-
-        html += "<input name = 'description' type=\"text\" id=\"description\">";
-        html += "<button>Add/Edit</button>";
-        html += "</form>";
-        html += "</div>";
-
-        html += "<table>";
-        html += " <tr>\n" +
-                "    <th>Name</th>\n" +
-                "    <th>Rate</th>\n" +
-                "    <th>Cost</th>\n" +
-                "    <th>Unlock At</th>\n" +
-                "    <th>Description</th>\n" +
-                "    <th>Edit</th>\n" +
-                "  </tr>";
-        for(Generator entry: entries){
-            html += "<tr>";
-            html += "<td>" + entry.getName() + "</td><td>" + entry.getRate() + "</td><td>" + entry.getBaseCost() + "</td><td>" + entry.getUnlockAt() + "</td><td>" + entry.getDescription() + "</td><td>edit : delete</td>";
-            html += "</tr>";
-        }
-        html += "</table>";
-        out.println(html);
-
+        request.setAttribute("generators", generators);
+//        String generatorID = request.getParameter("id");
+//		int num = -1;
+//
+//		if(generatorID != null){
+//		    num = getIndex(Integer.parseInt(generatorID));
+//        }
+//        request.setAttribute("index", num);
+//		if(request.getParameter("deleteId") != null){
+//		    int num2 = Integer.parseInt(request.getParameter("deleteId"));
+//		    Generator g = null;
+//		    g = generators.get(getIndex(num2));
+//		    dao.remove(g.getId());
+//		    response.sendRedirect("generators");
+//        }
+        request.getRequestDispatcher("/WEB-INF/admin-generator.jsp").forward(request, response);
 
 	}
 
@@ -93,4 +59,16 @@ public class AdminGeneratorsServlet extends HttpServlet {
         entry.add(gen);
         response.sendRedirect("generators");
 	}
+
+	public int getIndex(int x){
+	    final int DEFAULT = -1;
+	    GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+	    List<Generator> gen = dao.getAll();
+	    for(int i =0; i< gen.size(); i++){
+	        if(x == gen.get(i).getId()){
+	            return i;
+            }
+        }
+        return DEFAULT;
+    }
 }

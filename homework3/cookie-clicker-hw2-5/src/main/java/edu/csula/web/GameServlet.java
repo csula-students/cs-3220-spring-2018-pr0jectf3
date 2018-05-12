@@ -45,24 +45,16 @@ public class GameServlet extends HttpServlet {
 
     @Override
     public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        EventsDAO eventsDao = new EventsDAOImpl(getServletContext());
-        List<Event> events = eventsDao.getAll();
-
         GeneratorsDAO genDao = new GeneratorsDAOImpl(getServletContext());
         List<Generator> gens = genDao.getAll();
-
+        EventsDAO eventsDao = new EventsDAOImpl(getServletContext());
+        List<Event> events = eventsDao.getAll();
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        String gensJSON = gson.toJson(gens);
-        String storyJSON = gson.toJson(events);
-
-        out.println(gensJSON);
-        request.setAttribute("genjson", gensJSON);
-        request.setAttribute("storyjson", storyJSON);
+        String generator = gson.toJson(gens);
+        String stories = gson.toJson(events);
+        request.setAttribute("generator", generator);
+        request.setAttribute("stories", stories);
         request.getRequestDispatcher("../WEB-INF/game.jsp").forward(request, response);
 
     }

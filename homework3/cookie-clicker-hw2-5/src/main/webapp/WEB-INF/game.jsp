@@ -36,18 +36,14 @@
         <div class = "function">
             <game-button></game-button>
             <game-counter></game-counter>
-            <!--
-                    <h2 class ="count" id="nugget">0</h2>
 
-                    <button class="clicker" id="clicker"></button>
-            -->
         </div>
     </div>
 </main>
 </body>
 
 <script type="text/javascript">
-    generators = ${genjson};
+    generators = ${generator};
     for(i = 0 ; i < generators.length ; i++){
         generators[i].type = 'autonomous';
         generators[i].unlockValue = generators[i].unlockAt;
@@ -55,15 +51,14 @@
         delete generators[i].unlockAt;
         delete generators[i].id;
     }
-    stories = ${storyjson};
+    stories = ${stories};
     for(i = 0 ; i < stories.length ; i++){
         stories[i].triggeredAt = stories[i].triggerAt;
         stories[i].state = 'hidden';
         delete stories[i].triggerAt;
         delete stories[i].id;
     }
-    var backInfo = {}
-    backInfo.example = 'Hello custom element';
+    var backInfo = {};
     backInfo.counter = 0;
     backInfo.generators = generators;
     backInfo.story = stories;

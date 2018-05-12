@@ -124,7 +124,7 @@
             color: yellow;
         }
     </style>
-    <script type = "text/javascript" src= "app.bundle.js">
+    <script>
         generators = ${generator};
         for(i = 0 ; i < generators.length ; i++){
             generators[i].type = 'generators';

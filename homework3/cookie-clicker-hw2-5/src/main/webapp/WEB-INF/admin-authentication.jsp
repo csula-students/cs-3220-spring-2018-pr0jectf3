@@ -11,6 +11,16 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>User Login</h1>
+<link rel='stylesheet' type='text/css' href=' /app.css' />
+<form method = 'POST'>
+    Username:
+    <input name = 'username' type = \"text\" /><br/><br/>
+    </br/>
+    Password:
+    <input name = 'password'type = \"password\" />
+    </br/><br/>
+    <button>Login</button>
+</form>
 </body>
 </html>

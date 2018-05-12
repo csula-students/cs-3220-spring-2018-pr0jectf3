@@ -21,21 +21,10 @@ public class AuthenticationServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		// TODO: render the authentication page HTML
         doDelete(request, response);
-		String html = "<h1>User Login</h1>";
-        html +=  "<link rel='stylesheet' type='text/css' href='" + request.getContextPath() + "/app.css' />";
-		html += "<form method = 'POST'>";
-        html += "Username:";
-        html += "<input name = 'username' type = \"text\" /><br/><br/>";
-        html += "</br/>\n" +
-                "      Password:";
-        html += "<input name = 'password'type = \"password\" />\n" +
-                "    </br/>\n" +
-                "    <br/>";
-        html += "<button>Login</button>";
-        html += "</form>";
-        html += "";
+		request.getRequestDispatcher("../WEB-INF/admin-authentication.jsp").forward(request, response);
 
-		out.println(html);
+
+
 	}
 
 	@Override

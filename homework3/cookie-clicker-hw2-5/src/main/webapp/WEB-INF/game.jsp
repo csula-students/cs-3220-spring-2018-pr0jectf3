@@ -62,7 +62,6 @@
     backInfo.counter = 0;
     backInfo.generators = generators;
     backInfo.story = stories;
-    console.log(backInfo);
 </script>
 
 

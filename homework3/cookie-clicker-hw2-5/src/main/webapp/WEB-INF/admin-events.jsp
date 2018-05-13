@@ -20,7 +20,7 @@
     <li><a href="<c:url value='/admin/events' />">Events</a></li>
     <li><a href="<c:url value='/admin/generators' />">Generators</a></li>
 </ul>
-<link rel='stylesheet' type='text/css' href='/app.css'/>
+<link rel='stylesheet' type='text/css' href='<c:url value="/app.css"/>>'/>
 <p>
 <h4>Event Name:</h4>
 <form method='POST' action="">

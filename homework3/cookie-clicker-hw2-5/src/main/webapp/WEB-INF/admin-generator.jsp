@@ -12,7 +12,7 @@
     <title>Generators</title>
 </head>
 <body>
-    <link rel='stylesheet' type='text/css' href='/app.css'/>
+    <link rel='stylesheet' type='text/css' href='<c:url value="/app.css"/>>'/>
     <h1>Generators</h1>
     <ul>
         <li><a href="<c:url value='/admin/auth' />">Game Info</a></li>

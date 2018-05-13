@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>User Login</h1>
-<link rel='stylesheet' type='text/css' href=' /app.css' />
+<link rel='stylesheet' type='text/css' href='<c:url value="/app.css"/>>'/>
 <form method = 'POST'>
     Username:
     <input name = 'username' type = \"text\" /><br/><br/>

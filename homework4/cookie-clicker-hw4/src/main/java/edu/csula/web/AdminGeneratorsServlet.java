@@ -2,6 +2,7 @@ package edu.csula.web;
 
 import edu.csula.models.Generator;
 import edu.csula.storage.GeneratorsDAO;
+import edu.csula.storage.mysql.Database;
 import edu.csula.storage.servlet.GeneratorsDAOImpl;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		// TODO: render the generators page HTML
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		GeneratorsDAO dao = new GeneratorsDAOImpl(new Database());
 		List<Generator> generators = dao.getAll();
 
         request.setAttribute("generators", generators);
@@ -34,13 +35,6 @@ public class AdminGeneratorsServlet extends HttpServlet {
         }
         request.setAttribute("index", index);
 
-//		if(request.getParameter("deleteId") != null){
-//		    int num2 = Integer.parseInt(request.getParameter("deleteId"));
-//		    Generator g = null;
-//		    g = generators.get(getIndex(num2));
-//		    dao.remove(g.getId());
-//		    response.sendRedirect("generators");
-//        }
         request.getRequestDispatcher("../WEB-INF/admin-generator.jsp").forward(request, response);
 
 	}
@@ -49,7 +43,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
-        GeneratorsDAO entry = new GeneratorsDAOImpl(getServletContext());
+        GeneratorsDAO entry = new GeneratorsDAOImpl(new Database());
         List<Generator> entries = entry.getAll();
         String name = request.getParameter("name");
         String description = request.getParameter("description");
@@ -58,7 +52,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
         String rate = request.getParameter("rate");
 
         Generator gen = new Generator(entries.size(), name, description, Integer.parseInt(rate), Integer.parseInt(cost), Integer.parseInt(unlockAt));
-        entry.add(gen);
+        new GeneratorsDAOImpl(new Database()).add(gen);
         response.sendRedirect("generators");
 	}
 

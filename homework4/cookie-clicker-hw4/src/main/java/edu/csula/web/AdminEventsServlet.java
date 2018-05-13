@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import edu.csula.storage.mysql.Database;
 import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
@@ -29,7 +31,7 @@ public class AdminEventsServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         // TODO: render the events page HTML
-        EventsDAO dao = new EventsDAOImpl(getServletContext());
+        EventsDAO dao = new EventsDAOImpl(new Database());
         List<Event> entries = dao.getAll();
 
         ArrayList<Event> list = (ArrayList<Event>) getServletContext().getAttribute("event-entries");
@@ -45,13 +47,13 @@ public class AdminEventsServlet extends HttpServlet {
     public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: handle upsert transaction
 
-        EventsDAO entry = new EventsDAOImpl(getServletContext());
+        EventsDAO entry = new EventsDAOImpl(new Database()).getAll();
         List<Event> entries = entry.getAll();
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String triggerAt = request.getParameter("triggerAt");
         Event event = new Event(entries.size(), name, description, Integer.parseInt(triggerAt));
-        entry.add(event);
+        new EventsDAOImpl(new Database()).add(event);
 
         response.sendRedirect("events");
 
